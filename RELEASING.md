@@ -24,7 +24,7 @@ No PyPI, vá em **Manage → Publishing → Add a new publisher**:
 | Campo | Valor |
 |---|---|
 | PyPI project name | `wilzi-py-template` |
-| Owner | `wilzi` (seu usuário do GitHub) |
+| Owner | `opsssss-will` (seu usuário do GitHub) |
 | Repository name | `wilzi-py-template` |
 | Workflow name | `release.yml` |
 | Environment name | `pypi` |

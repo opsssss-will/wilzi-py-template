@@ -41,10 +41,10 @@ dev = [
 wilzi-py-template = "wilzi_py_template.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/wilzi/wilzi-py-template"
-Repository = "https://github.com/wilzi/wilzi-py-template"
-Issues = "https://github.com/wilzi/wilzi-py-template/issues"
-Changelog = "https://github.com/wilzi/wilzi-py-template/releases"
+Homepage = "https://github.com/opsssss-will/wilzi-py-template"
+Repository = "https://github.com/opsssss-will/wilzi-py-template"
+Issues = "https://github.com/opsssss-will/wilzi-py-template/issues"
+Changelog = "https://github.com/opsssss-will/wilzi-py-template/releases"
 
 [dependency-groups]
 dev = [
