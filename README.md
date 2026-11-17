@@ -106,11 +106,24 @@ lint → formatação → mypy → pytest com cobertura → build.
 
 ## Publicando
 
+O projeto usa **Trusted Publishing** (OIDC) — sem token de API no repositório.
+
 ```bash
+# Build + validação dos metadados
 uv build
-uv publish
+uv run twine check dist/*
+
+# Teste no TestPyPI
+uvx twine upload dist/* --repository-url https://test.pypi.org/legacy/
+
+# Release real (dispara o workflow de publish)
+git tag -a v0.1.0 -m "v0.1.0" && git push origin main --follow-tags
+gh release create v0.1.0 --generate-notes
 ```
+
+Guia completo (setup do PyPI, Trusted Publishing, checklist):
+**[RELEASING.md](RELEASING.md)**
 
 ## Licença
 
-MIT
+MIT — veja [LICENSE](LICENSE).

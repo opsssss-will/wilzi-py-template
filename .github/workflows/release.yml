@@ -1,0 +1,82 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Ambiente de deploy (pypi / testpypi)"
+        required: true
+        default: "testpypi"
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publicar no PyPI
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.event.inputs.environment || 'pypi' }}
+    permissions:
+      # Necessario para Trusted Publishing (OIDC)
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Instalar dependências
+        run: uv sync --all-extras --dev
+
+      - name: Verificar versão e build
+        run: |
+          uv run python -c "
+          import tomllib, pathlib
+          meta = tomllib.loads(pathlib.Path('pyproject.toml').read_text('utf-8'))
+          version = meta['project']['version']
+          tag = '${{ github.event.release.tag_name }}'
+          print(f'version={version} tag={tag}')
+          if tag and tag not in (f'v{version}', version):
+              raise SystemExit(f'ERRO: tag {tag} nao corresponde a versao {version}')
+          "
+
+      - name: Lint
+        run: uv run ruff check .
+
+      - name: Formatação
+        run: uv run ruff format --check .
+
+      - name: Tipos
+        run: uv run mypy .
+
+      - name: Testes
+        run: uv run pytest --cov
+
+      - name: Build
+        run: uv build
+
+      # Trusted Publishing: sem token, usa OIDC do GitHub Actions
+      - name: Publicar (Trusted Publishing)
+        if: github.event_name == 'release' || github.event.inputs.environment == 'pypi'
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://upload.pypi.org/legacy/
+
+      # TestPyPI: exige token (secret), porque Trusted Publishing tambem
+      # precisa estar configurado la separadamente.
+      - name: Publicar no TestPyPI (token)
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'testpypi'
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.TESTPYPI_API_TOKEN }}
+        run: |
+          uvx twine upload dist/* \
+            --repository-url https://test.pypi.org/legacy/ \
+            --non-interactive
