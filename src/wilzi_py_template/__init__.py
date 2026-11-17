@@ -2,12 +2,12 @@
 
 Exemplo de uso:
 
-    >>> from python_template import greeting
+    >>> from wilzi_py_template import greeting
     >>> greeting("Mundo")
     'Olá, Mundo!'
 """
 
-from python_template.core import Config, greeting
+from wilzi_py_template.core import Config, greeting
 
 __all__ = ["Config", "__version__", "greeting"]
 

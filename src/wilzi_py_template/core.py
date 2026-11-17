@@ -44,7 +44,7 @@ class Config:
     """Configuração imutável do projeto.
 
     Os valores podem ser sobrescritos por variáveis de ambiente
-    prefixadas com ``PYTHON_TEMPLATE_``.
+    prefixadas com ``WILZI_PY_TEMPLATE_``.
     """
 
     name: str = DEFAULT_NAME
@@ -64,18 +64,18 @@ class Config:
         """
         source = os.environ if env is None else env
 
-        raw_retries = source.get("PYTHON_TEMPLATE_MAX_RETRIES")
+        raw_retries = source.get("WILZI_PY_TEMPLATE_MAX_RETRIES")
         try:
             max_retries = int(raw_retries) if raw_retries else 3
         except ValueError:
             max_retries = 3
 
-        raw_tags = source.get("PYTHON_TEMPLATE_TAGS", "")
+        raw_tags = source.get("WILZI_PY_TEMPLATE_TAGS", "")
         tags = tuple(t.strip() for t in raw_tags.split(",") if t.strip())
 
         return cls(
-            name=source.get("PYTHON_TEMPLATE_NAME", DEFAULT_NAME),
-            verbose=source.get("PYTHON_TEMPLATE_VERBOSE", "").lower()
+            name=source.get("WILZI_PY_TEMPLATE_NAME", DEFAULT_NAME),
+            verbose=source.get("WILZI_PY_TEMPLATE_VERBOSE", "").lower()
             in {"1", "true", "yes"},
             max_retries=max_retries,
             tags=tags,

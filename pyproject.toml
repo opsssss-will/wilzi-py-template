@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "python-template"
+name = "wilzi-py-template"
 version = "0.1.0"
 description = "Template de projeto Python profissional"
 readme = "README.md"
@@ -34,16 +34,17 @@ dev = [
     "pytest-cov>=6.0.0",
     "mypy>=1.13.0",
     "ipython>=9.0.0",
+    "twine>=6.0.0",
 ]
 
 [project.scripts]
-python-template = "python_template.cli:main"
+wilzi-py-template = "wilzi_py_template.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/wilzi/python-template"
-Repository = "https://github.com/wilzi/python-template"
-Issues = "https://github.com/wilzi/python-template/issues"
-Changelog = "https://github.com/wilzi/python-template/releases"
+Homepage = "https://github.com/wilzi/wilzi-py-template"
+Repository = "https://github.com/wilzi/wilzi-py-template"
+Issues = "https://github.com/wilzi/wilzi-py-template/issues"
+Changelog = "https://github.com/wilzi/wilzi-py-template/releases"
 
 [dependency-groups]
 dev = [
@@ -51,10 +52,11 @@ dev = [
     "pytest>=9.0.0",
     "pytest-cov>=6.0.0",
     "mypy>=1.13.0",
+    "twine>=6.0.0",
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/python_template"]
+packages = ["src/wilzi_py_template"]
 
 [tool.ruff]
 line-length = 88
@@ -82,7 +84,7 @@ ignore = [
 "tests/*" = ["S101"]  # asserts permitidos em testes
 
 [tool.ruff.lint.isort]
-known-first-party = ["python_template"]
+known-first-party = ["wilzi_py_template"]
 
 [tool.ruff.format]
 quote-style = "double"
@@ -103,7 +105,7 @@ markers = [
 ]
 
 [tool.coverage.run]
-source = ["src/python_template"]
+source = ["src/wilzi_py_template"]
 branch = true
 
 [tool.coverage.report]
@@ -120,7 +122,7 @@ python_version = "3.12"
 strict = true
 warn_unreachable = true
 mypy_path = "src"
-packages = ["python_template"]
+packages = ["wilzi_py_template"]
 
 [[tool.mypy.overrides]]
 module = ["tests.*"]

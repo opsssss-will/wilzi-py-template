@@ -14,7 +14,7 @@ Este projeto usa **Trusted Publishing** (OIDC) — sem token de API no repositó
 
 ```bash
 gh auth login          # login interativo
-gh repo create python-template --public --source=. --remote=origin --push
+gh repo create wilzi-py-template --public --source=. --remote=origin --push
 ```
 
 ### 3. Configurar Trusted Publishing
@@ -23,9 +23,9 @@ No PyPI, vá em **Manage → Publishing → Add a new publisher**:
 
 | Campo | Valor |
 |---|---|
-| PyPI project name | `python-template` |
+| PyPI project name | `wilzi-py-template` |
 | Owner | `wilzi` (seu usuário do GitHub) |
-| Repository name | `python-template` |
+| Repository name | `wilzi-py-template` |
 | Workflow name | `release.yml` |
 | Environment name | `pypi` |
 
@@ -61,7 +61,7 @@ uvx twine upload dist/* \
 
 # 4. Testar a instalação
 uv venv /tmp/teste && uv pip install --index-url https://test.pypi.org/legacy/ \
-  --extra-index-url https://pypi.org/simple python-template
+  --extra-index-url https://pypi.org/simple wilzi-py-template
 ```
 
 Ou via GitHub Actions (após configurar o secret):
@@ -94,11 +94,11 @@ O workflow `release.yml` roda automaticamente: lint → tipos → testes → bui
 
 ```bash
 # O pacote aparece em:
-# https://pypi.org/project/python-template/
+# https://pypi.org/project/wilzi-py-template/
 
 # Testar instalação real
-pip install python-template
-python -c "import python_template; print(python_template.__version__)"
+pip install wilzi-py-template
+python -c "import wilzi_py_template; print(wilzi_py_template.__version__)"
 ```
 
 > O PyPI leva ~1-5 minutos para propagar o pacote.
@@ -107,7 +107,7 @@ python -c "import python_template; print(python_template.__version__)"
 
 ## Regras do PyPI
 
-- O **nome do pacote é global e permanente** — `python-template` não pode ser
+- O **nome do pacote é global e permanente** — `wilzi-py-template` não pode ser
   reutilizado depois, mesmo em conta nova.
 - Versões são imutáveis: para corrigir algo, publique `0.1.1`.
 - Não é possível reenviar o mesmo arquivo para a mesma versão.
@@ -125,4 +125,4 @@ python -c "import python_template; print(python_template.__version__)"
 - [ ] Versão no `pyproject.toml` incrementada
 - [ ] Tag `vX.Y.Z` criada e enviada
 - [ ] Release criada no GitHub
-- [ ] Pacote visível em pypi.org/project/python-template/
+- [ ] Pacote visível em pypi.org/project/wilzi-py-template/

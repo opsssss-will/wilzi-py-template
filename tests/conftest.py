@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from python_template.core import Config
+from wilzi_py_template.core import Config
 
 
 @pytest.fixture

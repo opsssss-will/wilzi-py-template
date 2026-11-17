@@ -1,10 +1,10 @@
-"""Testes do módulo :mod:`python_template.core`."""
+"""Testes do módulo :mod:`wilzi_py_template.core`."""
 
 from __future__ import annotations
 
 import pytest
 
-from python_template.core import DEFAULT_NAME, Config, greeting
+from wilzi_py_template.core import DEFAULT_NAME, Config, greeting
 
 
 class TestGreeting:
@@ -49,10 +49,10 @@ class TestConfig:
     def test_from_env_overrides(self, env: dict[str, str]) -> None:
         env.update(
             {
-                "PYTHON_TEMPLATE_NAME": "Projeto",
-                "PYTHON_TEMPLATE_VERBOSE": "true",
-                "PYTHON_TEMPLATE_MAX_RETRIES": "7",
-                "PYTHON_TEMPLATE_TAGS": "a, b ,c",
+                "WILZI_PY_TEMPLATE_NAME": "Projeto",
+                "WILZI_PY_TEMPLATE_VERBOSE": "true",
+                "WILZI_PY_TEMPLATE_MAX_RETRIES": "7",
+                "WILZI_PY_TEMPLATE_TAGS": "a, b ,c",
             }
         )
         config = Config.from_env(env)
@@ -63,7 +63,7 @@ class TestConfig:
 
     @pytest.mark.parametrize("raw", ["abc", "", "3.5"])
     def test_invalid_retries_falls_back(self, env: dict[str, str], raw: str) -> None:
-        env["PYTHON_TEMPLATE_MAX_RETRIES"] = raw
+        env["WILZI_PY_TEMPLATE_MAX_RETRIES"] = raw
         config = Config.from_env(env)
         if raw == "":
             assert config.max_retries == 3

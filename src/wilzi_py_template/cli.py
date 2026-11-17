@@ -1,7 +1,7 @@
 """Interface de linha de comando do pacote.
 
 Este módulo contém toda a interação com o sistema (argumentos, stdout).
-A lógica de negócio vive em :mod:`python_template.core`.
+A lógica de negócio vive em :mod:`wilzi_py_template.core`.
 """
 
 from __future__ import annotations
@@ -10,8 +10,8 @@ import argparse
 import sys
 from collections.abc import Sequence
 
-from python_template import __version__
-from python_template.core import Config, greeting
+from wilzi_py_template import __version__
+from wilzi_py_template.core import Config, greeting
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -21,7 +21,7 @@ def build_parser() -> argparse.ArgumentParser:
         Um :class:`argparse.ArgumentParser` configurado.
     """
     parser = argparse.ArgumentParser(
-        prog="python-template",
+        prog="wilzi-py-template",
         description="Ferramenta de linha de comando do template Python.",
     )
     parser.add_argument(

@@ -1,4 +1,4 @@
-# python-template
+# wilzi-py-template
 
 Template de projeto Python profissional — estrutura pronta com lint, tipagem,
 testes, cobertura, CI e empacotamento.
@@ -43,11 +43,11 @@ ruff check . && ruff format --check . && mypy . && pytest --cov
 ## Estrutura
 
 ```
-python-template/
+wilzi-py-template/
 ├── src/
-│   └── python_template/
+│   └── wilzi_py_template/
 │       ├── __init__.py      # API pública do pacote
-│       ├── __main__.py      # python -m python_template
+│       ├── __main__.py      # python -m wilzi_py_template
 │       ├── cli.py           # interface de linha de comando
 │       ├── core.py          # lógica pura (sem I/O)
 │       └── py.typed         # marcador PEP 561
@@ -81,23 +81,23 @@ Sem `make` (Windows): use os comandos do `uv run` listados acima.
 ## Uso da CLI
 
 ```bash
-uv run python-template                 # Olá, Mundo!
-uv run python-template Ana             # Olá, Ana!
-uv run python-template Ana --excited   # Olá, Ana!!
-uv run python-template --show-config
-uv run python-template --version
+uv run wilzi-py-template                 # Olá, Mundo!
+uv run wilzi-py-template Ana             # Olá, Ana!
+uv run wilzi-py-template Ana --excited   # Olá, Ana!!
+uv run wilzi-py-template --show-config
+uv run wilzi-py-template --version
 ```
 
 ## Configuração por ambiente
 
-A CLI lê variáveis com prefixo `PYTHON_TEMPLATE_`:
+A CLI lê variáveis com prefixo `WILZI_PY_TEMPLATE_`:
 
 | Variável | Padrão | Exemplo |
 |---|---|---|
-| `PYTHON_TEMPLATE_NAME` | `Mundo` | `Projeto` |
-| `PYTHON_TEMPLATE_VERBOSE` | `false` | `true` |
-| `PYTHON_TEMPLATE_MAX_RETRIES` | `3` | `7` |
-| `PYTHON_TEMPLATE_TAGS` | (vazio) | `a,b,c` |
+| `WILZI_PY_TEMPLATE_NAME` | `Mundo` | `Projeto` |
+| `WILZI_PY_TEMPLATE_VERBOSE` | `false` | `true` |
+| `WILZI_PY_TEMPLATE_MAX_RETRIES` | `3` | `7` |
+| `WILZI_PY_TEMPLATE_TAGS` | (vazio) | `a,b,c` |
 
 ## CI
 

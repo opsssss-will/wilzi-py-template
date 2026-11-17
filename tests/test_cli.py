@@ -4,11 +4,11 @@ from __future__ import annotations
 
 import pytest
 
-from python_template.cli import main
+from wilzi_py_template.cli import main
 
 
 class TestCLI:
-    """Testes para :func:`python_template.cli.main`."""
+    """Testes para :func:`wilzi_py_template.cli.main`."""
 
     def test_default_greeting(self, capsys: pytest.CaptureFixture[str]) -> None:
         assert main([]) == 0
